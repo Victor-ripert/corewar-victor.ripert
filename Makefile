@@ -21,7 +21,7 @@ CFLAGS = -Wall -Wextra
 
 LDFLAGS = -L./lib -lmy
 
-NAME = amazed
+NAME = corewar
 
 all: $(NAME)
 

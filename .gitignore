@@ -1,0 +1,8 @@
+*.log
+.vscode
+*.o
+*~
+*#
+*.out
+*.txt
+corewar
