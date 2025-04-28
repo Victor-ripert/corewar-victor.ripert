@@ -15,11 +15,11 @@ bool help_flag(void)
     "[-a load_address] prog_name] ...\nDESCRIPTION"
     "-dump nbr_cycle dumps the memory after the nbr_cycle execution"
     "(if the round isn'talready over) with the following format: 32 bytes/line"
-    "in hexadecimal (A0BCDEFE1DD3...)\n-n prog_number sets the next program's n"
-    "umber. By default, the first free number in the parameter order"
-    "-a load_address sets the next program's loading address. When no address i"
-    "s specified,optimize the addresses so that the processes are as far away fr"
-    "om each other aspossible. The addresses are MEM_SIZE modulo.")
+    "in hexadecimal (A0BCDEFE1DD3...)\n-n prog_number sets the next program's"
+    " number. By default, the first free number in the parameter order"
+    "-a load_address sets the next program's loading address. When no address "
+    "is specified,optimize the addresses so that the processes are as far away"
+    "from each other aspossible. The addresses are MEM_SIZE modulo.")
     == FAIL_VALUE) {
         return false;
     }
