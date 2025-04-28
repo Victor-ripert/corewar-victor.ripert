@@ -13,6 +13,5 @@ bool core(int argc, char **argv)
 {
     int opt = getopt(argc, argv, "dump:n:a");
 
-    
     return true;
 }
