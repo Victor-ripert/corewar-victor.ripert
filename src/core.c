@@ -21,4 +21,5 @@ bool core(int argc, char **argv)
     if (!get_args(argc, argv, &params)) {
         return false;
     }
+    return true;
 }

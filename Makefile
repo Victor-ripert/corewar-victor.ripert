@@ -36,4 +36,9 @@ fclean: clean
 
 re: fclean all clean
 
+coding-style: fclean
+	~/coding-style.sh .
+	@cat coding-style-reports.log
+	@$(RM) coding-style-reports.log
+
 .PHONY: all re clean fclean
