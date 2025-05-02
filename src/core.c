@@ -5,14 +5,20 @@
 ** core
 */
 
-#include <unistd.h>
+#include <stdlib.h>
 #include <stdbool.h>
+
 #include "my.h"
+#include "args.h"
+#include "flags.h"
+#include "args.h"
+#include "macros.h"
 
 bool core(int argc, char **argv)
 {
-    int opt = getopt(argc, argv, "dump:n:a");
+    param_t **params = NULL;
 
-    
-    return true;
+    if (!get_args(argc, argv, &params)) {
+        return false;
+    }
 }

@@ -11,5 +11,6 @@
     #define MY_H
 
 bool core(int argc, char **argv);
+bool get_args(int argc, char **argv, param_t ***cmds);
 
 #endif /* MY_H */
