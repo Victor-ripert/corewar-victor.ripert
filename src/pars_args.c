@@ -34,7 +34,7 @@ static param_t *get_arg(char *arg, char *param)
 static bool pars_args(int argc, char **argv, param_t ***cmds)
 {
     param_t **tmp = malloc(sizeof(param_t *));
-    int index = 1;
+    int index = 0;
 
     if (tmp == NULL)
         return false;
