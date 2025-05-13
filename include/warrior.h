@@ -5,13 +5,18 @@
 ** champions
 */
 
+#include "op.h"
+#include <sys/types.h>
+
 #ifndef WARRIOR
     #define WARRIOR
     typedef struct warrior_s {
-        char *champ_code;
+        ssize_t addres;
+        ssize_t prog_number;
+        char *pathname;
         char *champ_name;
-        char *address;
-        int player_num;
+        header_t header[sizeof(header_t)];
+        unsigned char *prog;
     }warrior_t;
 
 #endif /* WARRIOR */

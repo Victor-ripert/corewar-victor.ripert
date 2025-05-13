@@ -6,11 +6,17 @@
 */
 
 #include <stdbool.h>
+#include "warrior.h"
+#include "args.h"
 
 #ifndef MY_H
+    #include "../lib/my/my.h"
     #define MY_H
 
-bool core(int argc, char **argv);
-bool get_args(int argc, char **argv, param_t ***cmds);
+bool core(char **argv);
+bool pars_args(char **argv, sim_t *corewar);
+void free_warriors(warrior_t **warriors);
+void help_flag(void);
+bool get_warrior(char *pathname, sim_t *corewar, size_t *i);
 
 #endif /* MY_H */

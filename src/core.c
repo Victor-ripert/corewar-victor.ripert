@@ -10,15 +10,15 @@
 
 #include "my.h"
 #include "args.h"
-#include "flags.h"
 #include "args.h"
 #include "macros.h"
+#include "warrior.h"
 
-bool core(int argc, char **argv)
+bool core(char **argv)
 {
-    param_t **params = NULL;
+    sim_t *corewar = NULL;
 
-    if (!get_args(argc, argv, &params)) {
+    if (!pars_args(argv, corewar)) {
         return false;
     }
     return true;

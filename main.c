@@ -11,7 +11,11 @@
 
 int main(int argc, char **argv)
 {
-    if (!core(argc, argv)) {
+    if (argc == 2 && my_strcmp(argv[1], "-h") == SUCCESS_VALUE) {
+        help_flag();
+        return SUCCESS_VALUE;
+    }
+    if (!core(argv)) {
         return ERROR_VALUE;
     }
     return SUCCESS_VALUE;

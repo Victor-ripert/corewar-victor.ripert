@@ -7,34 +7,35 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include "warrior.h"
 
 #ifndef ARGS
     #define ARGS
 
-typedef enum flags_s {
-    DUMP,
-    PROG_NB,
-    LOAD_ADD,
-    NA
-} flags_t;
+typedef struct warrior_s warrior_t;
+
+typedef struct sim_s {
+    size_t dump;
+    size_t warriors_nb;
+    size_t prog_nb;
+    size_t load_address;
+    warrior_t **warriors;
+}sim_t;
+
+bool init_dump(char *arg, sim_t *corewar, size_t *i);
+bool get_load_address(char *arg, sim_t *corewar, size_t *i);
+bool get_prog_nbr(char *arg, sim_t *corewar, size_t *i);
 
 typedef struct args_s {
-    char *flag_str;
-    flags_t flag;
-    void *(*func)(char *);
+    char *flag;
+    bool (*func)(char *, sim_t *, size_t *);
 }args_t;
 
-const args_t args_tab[] = {
-    {"-dump", DUMP, NULL},
-    {"-n", PROG_NB, NULL},
-    {"-a", LOAD_ADD, NULL},
-    {NULL, NA, NULL}
+static const args_t args_tab[] = {
+    {"-dump", init_dump},
+    {"-n", get_prog_nbr},
+    {"-a", get_load_address},
+    {NULL, NULL}
 };
-
-typedef struct param_s {
-    flags_t flag;
-    args_t arg;
-    void *(*func)(char *);
-} param_t;
 
 #endif /* ARGS */

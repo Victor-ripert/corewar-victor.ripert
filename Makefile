@@ -7,8 +7,13 @@
 
 
 SRC = 	main.c					\
-		src/help.c				\
 		src/core.c				\
+		src/free_warriors.c		\
+		src/get_champions.c		\
+		src/help.c				\
+		src/op.c				\
+		src/pars_args.c			\
+		src/swap_endian.c		\
 
 
 OBJ	=	$(SRC:.c=.o)
@@ -26,13 +31,16 @@ NAME = corewar
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C lib/my/
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(SRC)-o $(NAME) $(LDFLAGS) $(LDLIBS)
 
 clean:
 	rm -f $(OBJ)
+	make clean -C lib/my
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C lib/my
 
 re: fclean all clean
 
