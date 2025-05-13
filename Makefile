@@ -22,7 +22,7 @@ CC = gcc
 
 CPPFLAGS = -I./include
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -ggdb3
 
 LDFLAGS = -L./lib -lmy
 

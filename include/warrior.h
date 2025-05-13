@@ -15,7 +15,7 @@
         ssize_t prog_number;
         char *pathname;
         char *champ_name;
-        header_t header[sizeof(header_t)];
+        header_t header;
         unsigned char *prog;
     }warrior_t;
 

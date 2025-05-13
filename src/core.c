@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "my.h"
 #include "args.h"
@@ -17,7 +18,6 @@
 bool core(char **argv)
 {
     sim_t *corewar = NULL;
-
     if (!pars_args(argv, corewar)) {
         return false;
     }

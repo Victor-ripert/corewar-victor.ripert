@@ -4,7 +4,9 @@
 *~
 *#
 *.out
+*.a
 *.txt
 *.zip
 corewar
+champions
 B-CPE-200_corewar_binaries
