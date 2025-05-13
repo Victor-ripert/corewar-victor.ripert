@@ -54,7 +54,7 @@ bool init_dump(char *arg, sim_t *corewar, size_t *i)
 static bool check_arg(char **argv, sim_t *corewar, size_t *i)
 {
     for (int j = 0; args_tab[j].flag != NULL; ++j) {
-        if (strcmp(args_tab[j].flag ,argv[*i]) == SUCCESS_VALUE) {
+        if (strcmp(args_tab[j].flag, argv[*i]) == SUCCESS_VALUE) {
             return args_tab[j].func(argv[*i + 1], corewar, i);
         }
     }
@@ -77,15 +77,15 @@ bool init_sim(sim_t **sim)
     return true;
 }
 
-bool pars_args(char **argv, sim_t *corewar)
+bool pars_args(char **argv, sim_t **corewar)
 {
     size_t i = 1;
 
-    if (!init_sim(&corewar)) {
+    if (!init_sim(corewar)) {
         return false;
     }
     while (argv[i] != NULL) {
-        if (!check_arg(argv, corewar, &i)) {
+        if (!check_arg(argv, *corewar, &i)) {
             return false;
         }
     }

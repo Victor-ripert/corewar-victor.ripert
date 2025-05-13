@@ -10,13 +10,13 @@
 
 #ifndef WARRIOR
     #define WARRIOR
-    typedef struct warrior_s {
-        ssize_t addres;
-        ssize_t prog_number;
-        char *pathname;
-        char *champ_name;
-        header_t header;
-        unsigned char *prog;
-    }warrior_t;
+typedef struct warrior_s {
+    ssize_t addres;
+    ssize_t prog_number;
+    char *pathname;
+    char *champ_name;
+    header_t header;
+    unsigned char *prog;
+}warrior_t;
 
 #endif /* WARRIOR */

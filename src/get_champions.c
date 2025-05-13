@@ -44,9 +44,9 @@ static bool get_struct(header_t *header, char *pathname)
 
     fd = open(pathname, O_RDONLY);
     if (fd == FAIL_VALUE)
-       return false;
-    if (read(fd, header, sizeof(header_t)) == FAIL_VALUE 
-    || be32toh(header->magic) != COREWAR_EXEC_MAGIC) {
+        return false;
+    if (read(fd, header, sizeof(header_t)) == FAIL_VALUE
+        || be32toh(header->magic) != COREWAR_EXEC_MAGIC) {
         close(fd);
         return false;
     }
@@ -64,10 +64,8 @@ static unsigned char *get_prog(int prog_size, char *pathname)
     if (fd == FAIL_VALUE)
         return NULL;
     buffer = malloc(sizeof(unsigned char) * (prog_size + 1));
-    if (buffer == NULL) {
-        close(fd);
+    if (buffer == NULL)
         return NULL;
-    }
     if (lseek(fd, 2192, SEEK_SET) == FAIL_VALUE)
         return return_failure(fd, buffer);
     for (int i = 0; i < prog_size; ++i) {
@@ -107,7 +105,7 @@ static void attribute_warrior_flags(sim_t *corewar)
     corewar->load_address = 0;
     corewar->prog_nb = 0;
     return;
-} 
+}
 
 bool get_warrior(char *pathname, sim_t *corewar, size_t *i)
 {
@@ -117,7 +115,7 @@ bool get_warrior(char *pathname, sim_t *corewar, size_t *i)
         }
         return false;
     }
-    corewar->warriors = realloc(corewar->warriors, 
+    corewar->warriors = realloc(corewar->warriors,
     sizeof(warrior_t *) * (corewar->warriors_nb + 1));
     if (corewar->warriors == NULL) {
         return false;

@@ -14,6 +14,7 @@ SRC = 	main.c					\
 		src/op.c				\
 		src/pars_args.c			\
 		src/swap_endian.c		\
+		src/sort_warriors.c		\
 
 
 OBJ	=	$(SRC:.c=.o)
