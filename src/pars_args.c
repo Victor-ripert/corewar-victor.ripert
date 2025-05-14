@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
 
 #include "my.h"
 #include "macros.h"
@@ -54,7 +53,7 @@ bool init_dump(char *arg, sim_t *corewar, size_t *i)
 static bool check_arg(char **argv, sim_t *corewar, size_t *i)
 {
     for (int j = 0; args_tab[j].flag != NULL; ++j) {
-        if (strcmp(args_tab[j].flag, argv[*i]) == SUCCESS_VALUE) {
+        if (my_strcmp(args_tab[j].flag, argv[*i]) == SUCCESS_VALUE) {
             return args_tab[j].func(argv[*i + 1], corewar, i);
         }
     }
