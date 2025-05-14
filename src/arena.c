@@ -42,7 +42,7 @@ static size_t get_warrior_size(warrior_t **warriors)
     return size;
 }
 
-void put_in_arena(char **arena, warrior_t **warriors, size_t nb_warriors)
+bool put_in_arena(char **arena, warrior_t **warriors)
 {
     char new_arena[MEM_SIZE] = {0};
 
