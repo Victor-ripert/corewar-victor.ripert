@@ -13,15 +13,16 @@
     #include "../lib/my/my.h"
     #define MY_H
 
-bool core(char **argv);
+bool core(int argc, char **argv);
 bool pars_args(char **argv, sim_t **corewar);
 void free_warriors(warrior_t **warriors);
 void help_flag(void);
 bool get_warrior(char *pathname, sim_t *corewar, size_t *i);
 int swap_endian(int nb);
 void sort_warriors(warrior_t **warriors, int warriors_nb);
-void assign_adress(warrior_t **warriors, size_t warriors_nb);
-bool put_in_arena(char **arena, warrior_t **warriors);
-void assign_adress(warrior_t **warriors, size_t warriors_nb);
+void put_in_arena(u_int8_t *arena, warrior_t **warriors);
+bool assign_adress(warrior_t **warriors, size_t warriors_nb);
+void print_map(u_int8_t *map);
+void display_error(char *error);
 
 #endif /* MY_H */

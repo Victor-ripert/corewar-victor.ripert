@@ -73,7 +73,6 @@ static unsigned char *get_prog(int prog_size, char *pathname)
         if (rv == FAIL_VALUE)
             return return_failure(fd, buffer);
     }
-    buffer[prog_size] = '\0';
     close(fd);
     return buffer;
 }

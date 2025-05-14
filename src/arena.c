@@ -13,23 +13,48 @@
 #include "args.h"
 #include "op.h"
 
-void print_map(char *arena)
+void my_put_base(int nb, int base, char *charbase, bool is_a_digit)
 {
-    for (int i = 0; i < MEM_SIZE; i += 2) {
-        my_putchar(arena[i]);
+    int temp_nb = 0;
+    int count = 0;
+
+    if (nb < 0) {
+        nb = nb * -1;
+        my_putchar('-');
+        count++;
+    }
+    if (nb >= base) {
+        temp_nb = nb % base;
+        my_put_base(nb / base, base, charbase, false);
+        my_putchar(charbase[temp_nb]);
+        count++;
+    }
+    if (nb < base) {
+        if (is_a_digit)
+            my_putchar('0');
+        my_putchar(charbase[nb]);
+        count++;
+    }
+}
+
+void print_map(u_int8_t *arena)
+{
+    for (int i = 0; i < MEM_SIZE; i += 1) {
+        if (i % 60 == 0 && i > 0) {
+            my_putchar('\n');
+        }
+        my_put_base(arena[i], 16, "0123456789ABCDEF", true);
         my_putchar(' ');
     }
+    my_putchar('\n');
     return;
 }
 
-static void put_at_adress(char **arena, warrior_t **warriors, int index)
+static void put_at_adress(u_int8_t *arena, warrior_t **warriors, int index)
 {
-    char *tmp = *arena;
-
-    for (int i = 0; warriors[index]->prog[i] != '\0'; ++i) {
-        tmp[warriors[index]->addres + i] = warriors[index]->prog[i];
+    for (int i = 0; i < warriors[index]->header.prog_size; ++i) {
+        arena[warriors[index]->addres + i] = warriors[index]->prog[i];
     }
-    *arena = tmp;
 }
 
 static size_t get_warrior_size(warrior_t **warriors)
@@ -37,42 +62,33 @@ static size_t get_warrior_size(warrior_t **warriors)
     size_t size = 0;
 
     for (int i = 0; warriors[i] != NULL; ++i) {
-        size += strlen(warriors[i]->header.prog_size);
+        size += warriors[i]->header.prog_size;
     }
     return size;
 }
 
-bool put_in_arena(char **arena, warrior_t **warriors)
+void put_in_arena(u_int8_t *arena, warrior_t **warriors)
 {
-    char new_arena[] = *arena;
-
     for (int i = 0; warriors[i] != NULL; ++i) {
-        put_at_adress(&new_arena, warriors, i);
+        put_at_adress(arena, warriors, i);
     }
-    *arena = new_arena;
-    return true;
+    return;
 }
 
-void assign_adress(warrior_t **warriors, size_t warriors_nb)
+bool assign_adress(warrior_t **warriors, size_t warriors_nb)
 {
-    size_t spaces = MEM_SIZE / warriors_nb;
+    size_t spaces = 0;
     size_t current = 0;
-    size_t remain = warriors_nb;
     size_t warriors_size = get_warrior_size(warriors);
 
     if (warriors_size > MEM_SIZE)
         return false;
+    spaces = (MEM_SIZE - warriors_size) / warriors_nb;
     for (int i = 0; warriors[i] != NULL; ++i) {
-        if (warriors[i]->addres != -1) {
-            --remain;
-        }
-    }
-    spaces = (MEM_SIZE % IDX_MOD - warriors_size) / remain;
-    for (int i = 0; warriors[i] != NULL; ++i) {
-        if (warriors[i] == -1) {
+        if (warriors[i]->addres == -1) {
             warriors[i]->addres = current;
-            current += current;
+            current += spaces % IDX_MOD;
         }
     }
-    return;
+    return true;
 }

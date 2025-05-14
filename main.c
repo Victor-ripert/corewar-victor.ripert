@@ -15,7 +15,7 @@ int main(int argc, char **argv)
         help_flag();
         return SUCCESS_VALUE;
     }
-    if (!core(argv)) {
+    if (!core(argc, argv)) {
         return ERROR_VALUE;
     }
     return SUCCESS_VALUE;

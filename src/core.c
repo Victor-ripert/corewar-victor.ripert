@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <sys/stat.h>
 
 #include "my.h"
 #include "args.h"
@@ -15,29 +16,41 @@
 #include "macros.h"
 #include "warrior.h"
 
+static bool return_status(sim_t *corewar, bool status)
+{
+    free_warriors(corewar->warriors);
+    free(corewar);
+    return status;
+}
+
 static bool launch_sim(sim_t *corewar)
 {
-    char arena[MEM_SIZE] = {0};
+    u_int8_t arena[MEM_SIZE] = {0};
 
     sort_warriors(corewar->warriors, corewar->warriors_nb);
-    assign_adress(corewar->warriors, corewar->warriors_nb);
-    if (!put_in_arena(&arena, corewar->warriors)) {
+    if (!assign_adress(corewar->warriors, corewar->warriors_nb)) {
         return false;
     }
+    put_in_arena(arena, corewar->warriors);
+    print_map(arena);
     return true;
 }
 
-bool core(char **argv)
+bool core(int argc, char **argv)
 {
     sim_t *corewar = NULL;
 
-    if (!pars_args(argv, &corewar)) {
+    if (argc < 2) {
+        display_error("INIT: Too few warrior\n");
         return false;
     }
-    if (!launch_sim(corewar)) {
+    if (!pars_args(argv, &corewar))
         return false;
+    if (corewar->warriors_nb < 2) {
+        display_error("INIT: Too few warrior\n");
+        return return_status(corewar, false);
     }
-    free_warriors(corewar->warriors);
-    free(corewar);
-    return true;
+    if (!launch_sim(corewar))
+        return return_status(corewar, false);
+    return return_status(corewar, true);
 }

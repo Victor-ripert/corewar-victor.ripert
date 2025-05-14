@@ -16,6 +16,7 @@ SRC = 	main.c					\
 		src/swap_endian.c		\
 		src/sort_warriors.c		\
 		src/arena.c				\
+		src/display_error.c		\
 
 
 OBJ	=	$(SRC:.c=.o)

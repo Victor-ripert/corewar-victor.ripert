@@ -11,4 +11,5 @@
     #define ERROR_VALUE 84
     #define SUCCESS_VALUE 0
     #define DOT_CORE ".cor"
+    #define ERROR_FD 2
 #endif /* MACROS */
