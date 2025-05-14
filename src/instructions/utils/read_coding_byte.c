@@ -23,7 +23,6 @@ bool read_coding_byte(uint8_t coding_byte, args_type_t **type_array)
         return false;
     for (int i = 7; i >= 1; i -= 2) {
         result = extract_bits(coding_byte, i - 1, i);
-        printf("result %d, %d = %ld\n", i - 1, i, result);
         (*type_array)[index] = result;
         index++;
     }

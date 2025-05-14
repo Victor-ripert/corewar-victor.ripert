@@ -10,7 +10,7 @@
 #include "op.h"
 #include "instruction.h"
 
-bool write_int_byte(context_t *context, int num, size_t adress)
+bool write_int_byte(uint8_t **map, int num, size_t adress)
 {
     uint8_t byte1 = 0;
     uint8_t byte2 = 0;
@@ -23,9 +23,9 @@ bool write_int_byte(context_t *context, int num, size_t adress)
     byte2 = extract_bits_int(num, 16, 23);
     byte3 = extract_bits_int(num, 8, 15);
     byte4 = extract_bits_int(num, 0, 7);
-    (*context->map)[adress] = byte1;
-    (*context->map)[(adress + 1) % IDX_MOD] = byte2;
-    (*context->map)[(adress + 2) % IDX_MOD] = byte3;
-    (*context->map)[(adress + 3) % IDX_MOD] = byte4;
+    (*map)[adress] = byte1;
+    (*map)[(adress + 1) % IDX_MOD] = byte2;
+    (*map)[(adress + 2) % IDX_MOD] = byte3;
+    (*map)[(adress + 3) % IDX_MOD] = byte4;
     return true;
 }
