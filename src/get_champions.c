@@ -102,8 +102,8 @@ static void attribute_warrior_flags(sim_t *corewar)
 {
     corewar->warriors[corewar->warriors_nb]->addres = corewar->load_address;
     corewar->warriors[corewar->warriors_nb]->prog_number = corewar->prog_nb;
-    corewar->load_address = 0;
-    corewar->prog_nb = 0;
+    corewar->load_address = -1;
+    corewar->prog_nb = -1;
     return;
 }
 

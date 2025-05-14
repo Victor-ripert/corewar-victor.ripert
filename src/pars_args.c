@@ -68,7 +68,7 @@ bool init_sim(sim_t **sim)
     if (new_sim == NULL) {
         return false;
     }
-    new_sim->dump = 0;
+    new_sim->dump = -1;
     new_sim->load_address = 0;
     new_sim->prog_nb = 0;
     new_sim->warriors = NULL;

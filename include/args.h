@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include "warrior.h"
 
 #ifndef ARGS
@@ -15,10 +16,10 @@
 typedef struct warrior_s warrior_t;
 
 typedef struct sim_s {
-    size_t dump;
+    ssize_t dump;
     size_t warriors_nb;
     size_t prog_nb;
-    size_t load_address;
+    ssize_t load_address;
     warrior_t **warriors;
 }sim_t;
 

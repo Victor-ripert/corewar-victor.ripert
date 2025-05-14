@@ -21,7 +21,7 @@ static bool launch_sim(sim_t *corewar)
 
     sort_warriors(corewar->warriors, corewar->warriors_nb);
     assign_adress(corewar->warriors, corewar->warriors_nb);
-    put_in_arena(&arena, corewar->warriors);
+    put_in_arena(&arena, corewar->warriors, corewar->warriors_nb);
     return true;
 }
 

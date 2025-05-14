@@ -22,30 +22,57 @@ void print_map(char *arena)
     return;
 }
 
-void put_in_arena(char **arena, warrior_t **warriors)
+static void put_at_adress(char **arena, warrior_t **warriors, int index)
+{
+    char *tmp = *arena;
+
+    for (int i = 0; warriors[index]->prog[i] != '\0'; ++i) {
+        tmp[warriors[index]->addres + i] = warriors[index]->prog[i];
+    }
+    *arena = tmp;
+}
+
+static size_t get_warrior_size(warrior_t **warriors)
+{
+    size_t size = 0;
+
+    for (int i = 0; warriors[i] != NULL; ++i) {
+        size += strlen(warriors[i]->header.prog_size);
+    }
+    return size;
+}
+
+void put_in_arena(char **arena, warrior_t **warriors, size_t nb_warriors)
 {
     char new_arena[MEM_SIZE] = {0};
 
     for (int i = 0; warriors[i] != NULL; ++i) {
-        for (int j = 0; warriors[i]->prog[j] != NULL; ++j) {
-            new_arena[(warriors[i]->addres + j) % IDX_MOD] =
-            warriors[i]->prog[j];
-        }
+        put_at_adress(&new_arena, warriors, i);
     }
     *arena = new_arena;
-    return;
+    return true;
 }
 
 void assign_adress(warrior_t **warriors, size_t warriors_nb)
 {
     size_t spaces = MEM_SIZE / warriors_nb;
     size_t current = 0;
+    size_t remain = warriors_nb;
+    size_t warriors_size = get_warrior_size(warriors);
 
+    if (warriors_size > MEM_SIZE)
+        return false;
     for (int i = 0; warriors[i] != NULL; ++i) {
-        if (warriors[i]->addres == 0) {
-            warriors[i]->addres = (current % IDX_MOD);
+        if (warriors[i]->addres != -1) {
+            --remain;
         }
-        current += spaces;
+    }
+    spaces = (MEM_SIZE % IDX_MOD - warriors_size) / remain;
+    for (int i = 0; warriors[i] != NULL; ++i) {
+        if (warriors[i] == -1) {
+            warriors[i]->addres = current;
+            current += current;
+        }
     }
     return;
 }

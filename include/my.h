@@ -21,6 +21,6 @@ bool get_warrior(char *pathname, sim_t *corewar, size_t *i);
 int swap_endian(int nb);
 void sort_warriors(warrior_t **warriors, int warriors_nb);
 void assign_adress(warrior_t **warriors, size_t warriors_nb);
-void put_in_arena(char **arena, warrior_t **warriors);
+void put_in_arena(char **arena, warrior_t **warriors, size_t warriors_nb);
 
 #endif /* MY_H */
