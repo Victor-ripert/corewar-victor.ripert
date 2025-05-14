@@ -12,4 +12,6 @@
     #define SUCCESS_VALUE 0
     #define DOT_CORE ".cor"
     #define ERROR_FD 2
+    #define EXA_BASE "0123456789ABCDEF"
+    #define EXA 16
 #endif /* MACROS */

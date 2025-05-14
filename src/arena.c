@@ -43,7 +43,7 @@ void print_map(u_int8_t *arena)
         if (i % 60 == 0 && i > 0) {
             my_putchar('\n');
         }
-        my_put_base(arena[i], 16, "0123456789ABCDEF", true);
+        my_put_base(arena[i], EXA, EXA_BASE, true);
         my_putchar(' ');
     }
     my_putchar('\n');
