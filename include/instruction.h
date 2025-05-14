@@ -18,23 +18,19 @@
     #define NB_INSTR 16 /* Number of instructions in Corewar */
     #define NB_INSTR_WITH_INDEX 2
 
-typedef struct context_s {
-    int **reg;
-    int *pc;
-    uint8_t **map;
-} context_t;
-
 typedef struct champion_s {
     size_t remanent_cycle;
     size_t pos;
     uint8_t instr;
     char *name;
-    bool (*ptr)(uint8_t *, context_t *);
+    bool (*ptr)(uint8_t *, struct champion_s *, uint8_t **);
+    int **reg;
+    int *pc;
 } champion_t;
 
 typedef struct op_to_instr_s {
     uint8_t opcode;
-    bool (*ptr)(uint8_t *, context_t *);
+    bool (*ptr)(uint8_t *, champion_t *, uint8_t **);
     size_t nb_cycle;
 } op_to_instr_t;
 
@@ -43,14 +39,15 @@ uint8_t extract_bits_int(int num, size_t start, size_t end);
 bool read_coding_byte(uint8_t coding_byte, args_type_t **type_array);
 int byte_to_int(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4);
 int byte_to_indir(uint8_t byte1, uint8_t byte2);
-bool write_int_byte(context_t *context, int num, size_t adress);
-ssize_t find_instr_size(context_t *context, uint8_t opcode, size_t pos);
-bool execute_instr(context_t *context, champion_t *champion);
+bool write_int_byte(uint8_t **map, int num, size_t adress);
+ssize_t find_instr_size(uint8_t **map, uint8_t opcode, size_t pos);
+bool execute_instr(uint8_t **map, champion_t *champion);
 
+bool main_loop(champion_t **champ_array, uint8_t **map);
 
 /* Instructions */
-bool ld_instr(uint8_t *params, context_t *context);
-bool st_instr(uint8_t *params, context_t *context);
-bool add_instr(uint8_t *params, context_t *context);
+bool ld_instr(uint8_t *params, champion_t *champion, uint8_t **map);
+bool st_instr(uint8_t *params, champion_t *champion, uint8_t **map);
+bool add_instr(uint8_t *params, champion_t *champion, uint8_t **map);
 
 #endif /* INSTRUCTION_H */

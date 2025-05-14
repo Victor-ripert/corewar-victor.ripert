@@ -24,29 +24,29 @@ bool st_check_params(args_type_t *type_array)
     return true;
 }
 
-bool st_handle_reg(uint8_t *params, context_t *context)
+bool st_handle_reg(uint8_t *params, champion_t *champion)
 {
     const uint8_t reg1_num = params[1];
     const uint8_t reg2_num = params[2];
 
     if (params[1] > REG_NUMBER || params[2] > REG_NUMBER)
         return false;
-    (*context->reg)[reg2_num] = (*context->reg)[reg1_num];
+    (*champion->reg)[reg2_num] = (*champion->reg)[reg1_num];
     return true;
 }
 
-bool st_hanlde_indir(uint8_t *params, context_t *context)
+bool st_hanlde_indir(uint8_t *params, uint8_t **map, champion_t *champion)
 {
     const uint8_t reg_num = params[1];
     const int indir = byte_to_indir(params[2], params[3]);
-    const size_t adress = ((*context->pc) + indir) % IDX_MOD;
+    const size_t adress = ((*champion->pc) + indir) % IDX_MOD;
 
     if (reg_num > REG_NUMBER || adress > MEM_SIZE)
         return false;
-    return write_int_byte(context, (*context->reg)[reg_num], adress);
+    return write_int_byte(map, (*champion->reg)[reg_num], adress);
 }
 
-bool st_instr(uint8_t *params, context_t *context)
+bool st_instr(uint8_t *params, champion_t *champion, uint8_t **map)
 {
     args_type_t *type_array = NULL;
 
@@ -56,10 +56,10 @@ bool st_instr(uint8_t *params, context_t *context)
         return false;
     if (type_array[1] == C_REG) {
         free(type_array);
-        return st_handle_reg;
+        return st_handle_reg(params, champion);
     }
     if (type_array[1] == C_IND) {
         free(type_array);
-        return st_hanlde_indir(params, context);
+        return st_hanlde_indir(params, map, champion);
     }
 }
