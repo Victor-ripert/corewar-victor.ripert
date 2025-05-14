@@ -44,7 +44,7 @@ static size_t get_warrior_size(warrior_t **warriors)
 
 bool put_in_arena(char **arena, warrior_t **warriors)
 {
-    char new_arena[MEM_SIZE] = {0};
+    char new_arena[] = *arena;
 
     for (int i = 0; warriors[i] != NULL; ++i) {
         put_at_adress(&new_arena, warriors, i);
