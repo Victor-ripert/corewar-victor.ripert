@@ -31,7 +31,7 @@ bool get_load_address(char *arg, sim_t *corewar, size_t *i)
 {
     int load_address = my_getnbr(arg);
 
-    if (load_address <= 0) {
+    if (load_address <= 0 || load_address > MEM_SIZE) {
         return false;
     }
     corewar->load_address = (size_t)load_address;
