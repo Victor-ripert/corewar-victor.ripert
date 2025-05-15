@@ -9,10 +9,12 @@
 
 #include "instruction.h"
 
-bool zjump_inst(uint8_t *params, champion_t *champion, uint8_t *map)
+bool zjmp_inst(uint8_t *params, champion_t *champion, uint8_t *map)
 {
-    short arg = (short)byte_to_indir(params[0], params[1]);
-
-    champion->pos += arg;
+    short arg = 0;
+    if (champion->carry) {
+        arg = (short)byte_to_indir(params[0], params[1]);
+        champion->pos += arg;
+    }
     return true;
 }

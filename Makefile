@@ -26,6 +26,7 @@ SRC = 	main.c					\
 		src/instructions/add.c	\
 		src/instructions/ld.c	\
 		src/instructions/st.c	\
+		src/instructions/zjump.c	\
 		src/mechanic/execute_instr.c	\
 		src/mechanic/find_instr_size.c	\
 		src/mechanic/init_champion_map.c	\
