@@ -29,6 +29,9 @@ typedef struct champion_s {
     bool (*ptr)(uint8_t *, struct champion_s *, uint8_t *);
     int **reg;
     ssize_t *pc;
+    bool carry;
+    bool alive;
+    bool dead;
 } champion_t;
 
 typedef struct op_to_instr_s {
@@ -50,6 +53,7 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
     size_t nb_robot, ssize_t dump);
 bool warrior_to_champion(warrior_t **warriors, champion_t ***champ_array);
 bool init_champion_map(sim_t *corewar, uint8_t *map);
+bool check_living_champions(champion_t **champ_array);
 
 /* Instructions */
 bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map);
