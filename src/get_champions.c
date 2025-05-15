@@ -109,9 +109,8 @@ static void attribute_warrior_flags(sim_t *corewar)
 bool get_warrior(char *pathname, sim_t *corewar, size_t *i)
 {
     if (!is_a_cor(pathname)) {
-        if (corewar->warriors != NULL) {
+        if (corewar->warriors != NULL)
             free_warriors(corewar->warriors);
-        }
         return false;
     }
     corewar->warriors = realloc(corewar->warriors,
@@ -119,7 +118,8 @@ bool get_warrior(char *pathname, sim_t *corewar, size_t *i)
         if (corewar->warriors == NULL) {
             return false;
         }
-        if (!init_warrior(&corewar->warriors[corewar->warriors_nb], pathname)) {
+        if (!init_warrior(&corewar->warriors[corewar->warriors_nb],
+            pathname)) {
             free_warriors(corewar->warriors);
             return false;
         }

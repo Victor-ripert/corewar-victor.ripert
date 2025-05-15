@@ -84,11 +84,11 @@ bool assign_adress(warrior_t **warriors, size_t warriors_nb)
 
     if (warriors_size > MEM_SIZE)
         return false;
-    spaces = (MEM_SIZE - warriors_size) / warriors_nb;
+    spaces = MEM_SIZE / warriors_nb;
     for (int i = 0; warriors[i] != NULL; ++i) {
         if (warriors[i]->addres == UNINITIALIZED) {
+            current += spaces % MAP_MOD;
             warriors[i]->addres = current;
-            current += spaces % IDX_MOD;
         }
     }
     return true;

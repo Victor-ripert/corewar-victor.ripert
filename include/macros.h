@@ -15,4 +15,5 @@
     #define EXA_BASE "0123456789ABCDEF"
     #define EXA 16
     #define UNINITIALIZED -1
+    #define MAP_MOD (6 * 1024)
 #endif /* MACROS */

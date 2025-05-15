@@ -29,13 +29,13 @@ bool is_index(uint8_t opcode)
     return false;
 }
 
-ssize_t find_instr_size(uint8_t **map, uint8_t opcode, size_t pos)
+ssize_t find_instr_size(uint8_t *map, uint8_t opcode, size_t pos)
 {
     ssize_t instr_size = 0;
     args_type_t *type_array = NULL;
     size_t dir_size = DIR_SIZE;
 
-    if (read_coding_byte((*map)[(pos + 1) % IDX_MOD], &type_array) == false)
+    if (read_coding_byte(map[(pos + 1) % IDX_MOD], &type_array) == false)
         return FAIL_VALUE;
     if (is_index(opcode) == true)
         dir_size = 2;

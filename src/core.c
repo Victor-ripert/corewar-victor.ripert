@@ -33,7 +33,7 @@ static bool launch_sim(sim_t *corewar)
         return false;
     }
     put_in_arena(arena, corewar->warriors);
-    if (init_champion_map(corewar, (uint8_t **)&arena) == false)
+    if (init_champion_map(corewar, (uint8_t *)&arena) == false)
         return false;
     return true;
 }

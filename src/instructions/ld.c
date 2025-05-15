@@ -22,7 +22,7 @@ static bool ld_handle_dir(uint8_t *params, champion_t *champion, int dir)
     return true;
 }
 
-static bool ld_handle_indir(uint8_t *params, uint8_t **map,
+static bool ld_handle_indir(uint8_t *params, uint8_t *map,
     champion_t *champion, int indir)
 {
     const size_t reg_pos = 3;
@@ -31,13 +31,13 @@ static bool ld_handle_indir(uint8_t *params, uint8_t **map,
 
     if (params[reg_pos] > REG_NUMBER)
         return false;
-    result = byte_to_int((*map[adress]), (*map[adress + 1]),
-        (*map[adress + 2]), (*map[adress + 3]));
+    result = byte_to_int(map[adress], map[adress + 1],
+        map[adress + 2], map[adress + 3]);
     (*champion->reg)[params[reg_pos]] = result;
     return true;
 }
 
-bool ld_instr(uint8_t *params, champion_t *champion, uint8_t **map)
+bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map)
 {
     args_type_t *type_array = NULL;
     int arg1 = 0;
