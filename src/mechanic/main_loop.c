@@ -35,6 +35,10 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
     size_t cycle = 0;
 
     while (nb_robot >= 2) {
+        if ((cycle % CYCLE_TO_DIE) == 0) {
+            if (check_living_champions(champ_array) == false)
+                return false;
+        }
         if (select_champions(map, champ_array) == false)
             return false;
         cycle++;
