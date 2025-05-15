@@ -37,13 +37,28 @@ static bool ld_handle_indir(uint8_t *params, uint8_t *map,
     return true;
 }
 
-bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map)
+static bool check_params(args_type_t *type_array)
+{
+    if (type_array[0] == C_REG)
+        return false;
+    if (type_array[1] != C_REG)
+        return false;
+    if (type_array[2] != C_NON || type_array[3] != C_NON)
+        return false;
+    return true;
+}
+
+bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
 {
     args_type_t *type_array = NULL;
     int arg1 = 0;
 
     if (read_coding_byte(params[0], &type_array) == false)
         return false;
+    if (check_params(type_array) == false) {
+        champion->carry = false;
+        return true;
+    }
     if (type_array[0] == C_DIR) {
         arg1 = byte_to_int(params[1], params[2], params[3], params[4]);
         free(type_array);

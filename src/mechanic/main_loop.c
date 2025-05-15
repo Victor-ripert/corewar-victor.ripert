@@ -13,9 +13,9 @@
 #include "my.h"
 #include "macros.h"
 
-bool play_champion(uint8_t *map, champion_t *champion)
+bool play_champion(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
-    if (execute_instr(map, champion) == false)
+    if (execute_instr(map, champion, champ_array) == false)
         return false;
     return true;
 }
@@ -23,7 +23,7 @@ bool play_champion(uint8_t *map, champion_t *champion)
 bool select_champions(uint8_t *map, champion_t **champ_array)
 {
     for (size_t i = 0; champ_array[i] != NULL; i++) {
-        if (play_champion(map, champ_array[i]) == false)
+        if (play_champion(map, champ_array[i], champ_array) == false)
             return false;
     }
     return true;

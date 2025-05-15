@@ -12,7 +12,17 @@
 #include "macros.h"
 #include "instruction.h"
 
-bool add_instr(uint8_t *params, champion_t *champion, uint8_t **)
+static bool check_params(args_type_t *type_array)
+{
+    if (type_array[0] != C_REG || type_array[1] != C_REG
+        || type_array[2] != C_REG)
+        return false;
+    if (type_array[3] != C_NON)
+        return false;
+    return true;
+}
+
+bool add_instr(uint8_t *params, champion_t *champion, uint8_t *, champion_t **)
 {
     args_type_t *type_array = NULL;
     int reg1_num = 0;
@@ -21,9 +31,10 @@ bool add_instr(uint8_t *params, champion_t *champion, uint8_t **)
 
     if (read_coding_byte(params[0], &type_array) == false)
         return false;
-    if (type_array[0] != C_REG || type_array[1] != C_REG
-        || type_array[2] != C_REG)
-        return false;
+    if (check_params(type_array) == false) {
+        champion->carry = false;
+        return true;
+    }
     reg1_num = params[1];
     reg2_num = params[2];
     reg3_num = params[3];

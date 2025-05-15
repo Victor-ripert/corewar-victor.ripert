@@ -13,7 +13,7 @@
 #include "macros.h"
 #include "instruction.h"
 
-bool st_check_params(args_type_t *type_array)
+static bool st_check_params(args_type_t *type_array)
 {
     if (type_array[0] != C_REG)
         return false;
@@ -24,7 +24,7 @@ bool st_check_params(args_type_t *type_array)
     return true;
 }
 
-bool st_handle_reg(uint8_t *params, champion_t *champion)
+static bool st_handle_reg(uint8_t *params, champion_t *champion)
 {
     const uint8_t reg1_num = params[1];
     const uint8_t reg2_num = params[2];
@@ -35,7 +35,7 @@ bool st_handle_reg(uint8_t *params, champion_t *champion)
     return true;
 }
 
-bool st_hanlde_indir(uint8_t *params, uint8_t *map, champion_t *champion)
+static bool st_hanlde_indir(uint8_t *params, uint8_t *map, champion_t *champion)
 {
     const uint8_t reg_num = params[1];
     const int indir = byte_to_indir(params[2], params[3]);
@@ -46,14 +46,16 @@ bool st_hanlde_indir(uint8_t *params, uint8_t *map, champion_t *champion)
     return write_int_byte(map, (*champion->reg)[reg_num], adress);
 }
 
-bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map)
+bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
 {
     args_type_t *type_array = NULL;
 
     if (read_coding_byte(params[0], &type_array) == false)
         return false;
-    if (st_check_params(type_array) == false)
-        return false;
+    if (st_check_params(type_array) == false) {
+        champion->carry = false;
+        return true;
+    }
     if (type_array[1] == C_REG) {
         free(type_array);
         return st_handle_reg(params, champion);
@@ -62,5 +64,5 @@ bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map)
         free(type_array);
         return st_hanlde_indir(params, map, champion);
     }
-    return false;
+    return true;
 }

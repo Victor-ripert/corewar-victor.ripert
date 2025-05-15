@@ -31,6 +31,7 @@ SRC = 	main.c					\
 		src/mechanic/init_champion_map.c	\
 		src/mechanic/main_loop.c	\
 		src/mechanic/warrior_to_champion.c	\
+		src/mechanic/check_living_champions.c	\
 
 
 OBJ	=	$(SRC:.c=.o)

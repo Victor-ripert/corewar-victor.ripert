@@ -47,7 +47,7 @@ bool fill_n_byte(uint8_t *map, uint8_t **byte_array,
     return true;
 }
 
-bool case_instr(uint8_t *map, champion_t *champion)
+bool case_instr(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
     ssize_t nb_byte = 0;
     uint8_t *byte_array = NULL;
@@ -60,19 +60,19 @@ bool case_instr(uint8_t *map, champion_t *champion)
         if (fill_n_byte(map, &byte_array,
             nb_byte, champion->pos) == false)
             return false;
-        if (champion->ptr(byte_array, champion, map) == false)
+        if (champion->ptr(byte_array, champion, map, champ_array) == false)
             return false;
         champion->pos = (champion->pos + nb_byte + 1) % IDX_MOD;
     }
     return true;
 }
 
-bool execute_instr(uint8_t *map, champion_t *champion)
+bool execute_instr(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
     if (champion->remanent_cycle > 0)
         return true;
     if (champion->instr != C_NON) {
-        if (case_instr(map, champion) == false)
+        if (case_instr(map, champion, champ_array) == false)
             return false;
     }
     if (champion->instr == C_NON) {
