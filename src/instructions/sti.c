@@ -11,7 +11,5 @@
 
 bool sti_inst(uint8_t *params, champion_t *champion, uint8_t *map)
 {
-    args_type_t *type_array = ;
-
-    read_coding_byte()
+    return true;
 }
