@@ -15,6 +15,8 @@
 
 bool play_champion(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
+    if (champion->dead == true)
+        return true;
     if (execute_instr(map, champion, champ_array) == false)
         return false;
     return true;

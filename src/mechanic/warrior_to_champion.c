@@ -32,6 +32,7 @@ bool warrior_transition(warrior_t *warrior, champion_t *champion)
     reg = malloc(sizeof(int) * REG_NUMBER);
     if (reg == NULL)
         return false;
+    reg[0] = warrior->prog_number;
     champion->instr = C_NON;
     champion->name = warrior->champ_name;
     champion->pc = &warrior->addres;

@@ -13,21 +13,15 @@
 #include "instruction.h"
 #include "op.h"
 
-static bool check_params(args_type_t *type_array)
-{
-    if (type_array[0] == C_REG)
-        return false;
-    if (type_array[1] != C_REG)
-        return false;
-    if (type_array[2] != C_NON || type_array[3] != C_NON)
-        return false;
-    return true;
-}
-
-bool live_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **champ_array)
+bool live_instr(uint8_t *params, champion_t *, uint8_t *, champion_t **champ_array)
 {
     int arg1 = 0;
 
-
-    return false;
+    arg1 = byte_to_int(params[0], params[1], params[2], params[3]);
+    for (size_t i = 0; champ_array[i] != NULL; i++) {
+        if ((*champ_array[i]->reg)[0] == arg1) {
+            champ_array[i]->alive = true;
+        }
+    }
+    return true;
 }
