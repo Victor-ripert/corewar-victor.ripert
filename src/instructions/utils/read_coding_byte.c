@@ -9,9 +9,9 @@
 #include <stdint.h>
 #include <sys/types.h>
 #include <stdlib.h>
-#include "op.h"
 
-#include <stdio.h>
+#include "op.h"
+#include "instruction.h"
 
 bool read_coding_byte(uint8_t coding_byte, args_type_t **type_array)
 {

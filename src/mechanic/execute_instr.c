@@ -8,6 +8,8 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
+
 #include "instruction.h"
 #include "macros.h"
 
@@ -62,6 +64,7 @@ bool case_instr(uint8_t **map, champion_t *champion)
             return false;
         champion->pos = (champion->pos + nb_byte + 1) % IDX_MOD;
     }
+    return true;
 }
 
 bool execute_instr(uint8_t **map, champion_t *champion)

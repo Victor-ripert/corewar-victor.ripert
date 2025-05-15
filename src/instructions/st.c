@@ -62,4 +62,5 @@ bool st_instr(uint8_t *params, champion_t *champion, uint8_t **map)
         free(type_array);
         return st_hanlde_indir(params, map, champion);
     }
+    return false;
 }

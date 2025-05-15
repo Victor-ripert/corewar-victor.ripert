@@ -26,7 +26,7 @@ static bool ld_handle_indir(uint8_t *params, uint8_t **map,
     champion_t *champion, int indir)
 {
     const size_t reg_pos = 3;
-    int adress = ((*champion->pc) + params[reg_pos]) % IDX_MOD;
+    int adress = ((*champion->pc) + indir) % IDX_MOD;
     int result = 0;
 
     if (params[reg_pos] > REG_NUMBER)

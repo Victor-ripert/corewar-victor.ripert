@@ -34,6 +34,8 @@ bool main_loop(champion_t **champ_array, uint8_t **map)
         if (select_champions(map, champ_array) == false)
             return false;
         cycle++;
+        if (cycle > 100)
+            return true;
     }
     return true;
 }

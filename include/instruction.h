@@ -16,7 +16,10 @@
     #define C_IND 3 /* Value of the indirect in the coding byte*/
     #define C_NON 0 /* Value of nothing in the coding byte*/
     #define NB_INSTR 16 /* Number of instructions in Corewar */
-    #define NB_INSTR_WITH_INDEX 2
+    #define NB_INSTR_WITH_INDEX 4
+
+typedef struct warrior_s warrior_t;
+typedef struct sim_s sim_t;
 
 typedef struct champion_s {
     size_t remanent_cycle;
@@ -25,7 +28,7 @@ typedef struct champion_s {
     char *name;
     bool (*ptr)(uint8_t *, struct champion_s *, uint8_t **);
     int **reg;
-    int *pc;
+    ssize_t *pc;
 } champion_t;
 
 typedef struct op_to_instr_s {
@@ -44,10 +47,12 @@ ssize_t find_instr_size(uint8_t **map, uint8_t opcode, size_t pos);
 bool execute_instr(uint8_t **map, champion_t *champion);
 
 bool main_loop(champion_t **champ_array, uint8_t **map);
+bool warrior_to_champion(warrior_t **warriors, champion_t ***champ_array);
+bool init_champion_map(sim_t *corewar, uint8_t **map);
 
 /* Instructions */
 bool ld_instr(uint8_t *params, champion_t *champion, uint8_t **map);
 bool st_instr(uint8_t *params, champion_t *champion, uint8_t **map);
-bool add_instr(uint8_t *params, champion_t *champion, uint8_t **map);
+bool add_instr(uint8_t *params, champion_t *champion, uint8_t **);
 
 #endif /* INSTRUCTION_H */

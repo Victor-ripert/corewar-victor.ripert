@@ -17,6 +17,20 @@ SRC = 	main.c					\
 		src/sort_warriors.c		\
 		src/arena.c				\
 		src/display_error.c		\
+		src/instructions/utils/byte_to_indir.c	\
+		src/instructions/utils/byte_to_int.c	\
+		src/instructions/utils/extract_bits_int.c	\
+		src/instructions/utils/extract_bits.c	\
+		src/instructions/utils/read_coding_byte.c	\
+		src/instructions/utils/write_int_byte.c	\
+		src/instructions/add.c	\
+		src/instructions/ld.c	\
+		src/instructions/st.c	\
+		src/mechanic/execute_instr.c	\
+		src/mechanic/find_instr_size.c	\
+		src/mechanic/init_champion_map.c	\
+		src/mechanic/main_loop.c	\
+		src/mechanic/warrior_to_champion.c	\
 
 
 OBJ	=	$(SRC:.c=.o)
@@ -25,11 +39,13 @@ CC = gcc
 
 CPPFLAGS = -I./include
 
-CFLAGS = -Wall -Wextra -ggdb3
+CFLAGS = -Wall -Wextra
 
 LDFLAGS = -L./lib -lmy
 
 NAME = corewar
+
+DEBUG_CFLAGS = -ggdb3
 
 all: $(NAME)
 
@@ -47,9 +63,12 @@ fclean: clean
 
 re: fclean all clean
 
+debug: CFLAGS += $(DEBUG_CFLAGS)
+debug: re
+
 coding-style: fclean
 	~/coding-style.sh .
 	@cat coding-style-reports.log
 	@$(RM) coding-style-reports.log
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean debug

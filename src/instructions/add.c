@@ -12,9 +12,9 @@
 #include "macros.h"
 #include "instruction.h"
 
-bool add_instr(uint8_t *params, champion_t *champion, uint8_t **map)
+bool add_instr(uint8_t *params, champion_t *champion, uint8_t **)
 {
-    args_type_t **type_array = NULL;
+    args_type_t *type_array = NULL;
     int reg1_num = 0;
     int reg2_num = 0;
     int reg3_num = 0;
@@ -22,7 +22,7 @@ bool add_instr(uint8_t *params, champion_t *champion, uint8_t **map)
     if (read_coding_byte(params[0], &type_array) == false)
         return false;
     if (type_array[0] != C_REG || type_array[1] != C_REG
-        || type_array[2] != C_REG);
+        || type_array[2] != C_REG)
         return false;
     reg1_num = params[1];
     reg2_num = params[2];

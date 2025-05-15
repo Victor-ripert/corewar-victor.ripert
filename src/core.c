@@ -15,6 +15,7 @@
 #include "args.h"
 #include "macros.h"
 #include "warrior.h"
+#include "instruction.h"
 
 static bool return_status(sim_t *corewar, bool status)
 {
@@ -32,7 +33,8 @@ static bool launch_sim(sim_t *corewar)
         return false;
     }
     put_in_arena(arena, corewar->warriors);
-    print_map(arena);
+    if (init_champion_map(corewar, (uint8_t **)&arena) == false)
+        return false;
     return true;
 }
 
