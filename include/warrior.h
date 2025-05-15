@@ -5,8 +5,9 @@
 ** champions
 */
 
-#include "op.h"
 #include <sys/types.h>
+
+#include "op.h"
 
 #ifndef WARRIOR
     #define WARRIOR

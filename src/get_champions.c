@@ -101,8 +101,8 @@ static void attribute_warrior_flags(sim_t *corewar)
 {
     corewar->warriors[corewar->warriors_nb]->addres = corewar->load_address;
     corewar->warriors[corewar->warriors_nb]->prog_number = corewar->prog_nb;
-    corewar->load_address = -1;
-    corewar->prog_nb = -1;
+    corewar->load_address = UNINITIALIZED;
+    corewar->prog_nb = UNINITIALIZED;
     return;
 }
 
@@ -115,16 +115,17 @@ bool get_warrior(char *pathname, sim_t *corewar, size_t *i)
         return false;
     }
     corewar->warriors = realloc(corewar->warriors,
-    sizeof(warrior_t *) * (corewar->warriors_nb + 1));
-    if (corewar->warriors == NULL) {
-        return false;
-    }
-    if (!init_warrior(&corewar->warriors[corewar->warriors_nb], pathname)) {
-        free_warriors(corewar->warriors);
-        return false;
-    }
+        sizeof(warrior_t *) * (corewar->warriors_nb + 2));
+        if (corewar->warriors == NULL) {
+            return false;
+        }
+        if (!init_warrior(&corewar->warriors[corewar->warriors_nb], pathname)) {
+            free_warriors(corewar->warriors);
+            return false;
+        }
     attribute_warrior_flags(corewar);
     corewar->warriors_nb += 1;
+    corewar->warriors[corewar->warriors_nb] = NULL;
     *i = *i + 1;
     return true;
 }

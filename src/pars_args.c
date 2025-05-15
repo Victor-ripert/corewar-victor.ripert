@@ -14,23 +14,41 @@
 #include "args.h"
 #include "warrior.h"
 
+static bool is_a_valid_nb(char *arg)
+{
+    for (int i = 0; arg[i] != '\0'; ++i) {
+        if (arg[i] < 48 || arg[i] > 57) {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool get_prog_nbr(char *arg, sim_t *corewar, size_t *i)
 {
-    int nbr_cycle = my_getnbr(arg);
+    int prog_nb = 0;
 
-    if (nbr_cycle <= 0) {
+    if (!is_a_valid_nb(arg)) {
         return false;
     }
-    corewar->prog_nb = (size_t)nbr_cycle;
+    prog_nb = my_getnbr(arg);
+    if (prog_nb < 0) {
+        return false;
+    }
+    corewar->prog_nb = (size_t)prog_nb;
     *i = *i + 2;
     return true;
 }
 
 bool get_load_address(char *arg, sim_t *corewar, size_t *i)
 {
-    int load_address = my_getnbr(arg);
+    int load_address = 0;
 
-    if (load_address <= 0 || load_address > MEM_SIZE) {
+    if (!my_getnbr(arg)) {
+        return false;
+    }
+    load_address = my_getnbr(arg);
+    if (load_address < 0 || load_address > MEM_SIZE) {
         return false;
     }
     corewar->load_address = (size_t)load_address;
@@ -40,9 +58,13 @@ bool get_load_address(char *arg, sim_t *corewar, size_t *i)
 
 bool init_dump(char *arg, sim_t *corewar, size_t *i)
 {
-    int nb_cycle = my_getnbr(arg);
+    int nb_cycle = 0;
 
-    if (nb_cycle <= 0) {
+    if (!my_getnbr(arg)) {
+        return false;
+    }
+    nb_cycle = my_getnbr(arg);
+    if (nb_cycle < 0) {
         return false;
     }
     corewar->dump = (size_t)nb_cycle;

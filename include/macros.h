@@ -14,4 +14,5 @@
     #define ERROR_FD 2
     #define EXA_BASE "0123456789ABCDEF"
     #define EXA 16
+    #define UNINITIALIZED -1
 #endif /* MACROS */

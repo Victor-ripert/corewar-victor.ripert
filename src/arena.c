@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+
 #include "macros.h"
 #include "warrior.h"
 #include "my.h"
@@ -85,7 +86,7 @@ bool assign_adress(warrior_t **warriors, size_t warriors_nb)
         return false;
     spaces = (MEM_SIZE - warriors_size) / warriors_nb;
     for (int i = 0; warriors[i] != NULL; ++i) {
-        if (warriors[i]->addres == -1) {
+        if (warriors[i]->addres == UNINITIALIZED) {
             warriors[i]->addres = current;
             current += spaces % IDX_MOD;
         }

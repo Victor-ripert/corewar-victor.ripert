@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+
 #include "warrior.h"
 
 void free_warriors(warrior_t **warriors)
