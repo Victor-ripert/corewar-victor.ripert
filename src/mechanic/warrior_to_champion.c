@@ -13,6 +13,8 @@
 #include "instruction.h"
 #include "macros.h"
 
+#include <stdio.h>
+
 ssize_t find_warriors_len(warrior_t **warriors)
 {
     ssize_t count = 0;
@@ -35,11 +37,13 @@ bool warrior_transition(warrior_t *warrior, champion_t *champion)
     reg[0] = warrior->prog_number;
     champion->instr = C_NON;
     champion->name = warrior->champ_name;
+    printf("champ name %s\n", warrior->champ_name);
     champion->pc = &warrior->addres;
     champion->pos = warrior->addres;
     champion->ptr = NULL;
     champion->reg = &reg;
     champion->remanent_cycle = 0;
+    champion->dead = false;
     return true;
 }
 

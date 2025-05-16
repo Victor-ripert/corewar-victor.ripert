@@ -9,12 +9,14 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <sys/stat.h>
+#include <stdint.h>
 
 #include "my.h"
 #include "args.h"
 #include "args.h"
 #include "macros.h"
 #include "warrior.h"
+#include "instruction.h"
 
 static bool return_status(sim_t *corewar, bool status)
 {
@@ -25,14 +27,15 @@ static bool return_status(sim_t *corewar, bool status)
 
 static bool launch_sim(sim_t *corewar)
 {
-    u_int8_t arena[MEM_SIZE] = {0};
+    uint8_t arena[MEM_SIZE] = {0};
 
     sort_warriors(corewar->warriors, corewar->warriors_nb);
     if (!assign_adress(corewar->warriors, corewar->warriors_nb)) {
         return false;
     }
     put_in_arena(arena, corewar->warriors);
-    print_map(arena);
+    if (init_champion_map(corewar, (uint8_t *)arena) == false)
+        return false;
     return true;
 }
 

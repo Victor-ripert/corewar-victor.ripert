@@ -13,6 +13,8 @@
 #include "my.h"
 #include "macros.h"
 
+#include <stdio.h>
+
 bool play_champion
 (uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
@@ -38,6 +40,7 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
     size_t cycle = 0;
 
     while (nb_robot >= 2) {
+        printf("nb cycle = %ld\n", cycle);
         if ((cycle % CYCLE_TO_DIE) == 0) {
             check_living_champions(champ_array);
         }
@@ -48,6 +51,9 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
             print_map(map);
             return true;
         }
+        if (count_live_champions(champ_array, &nb_robot) == false)
+            return false;
+        printf("after boucle\n");
     }
     return true;
 }
