@@ -50,6 +50,7 @@ bool write_int_byte(uint8_t *map, int num, size_t adress);
 ssize_t find_instr_size(uint8_t *map, uint8_t opcode, size_t pos);
 bool execute_instr
 (uint8_t *map, champion_t *champion, champion_t **cham_array);
+bool add_champion(champion_t ***champ_array, size_t pos, int id);
 
 bool main_loop(champion_t **champ_array, uint8_t *map,
     size_t nb_robot, ssize_t dump);

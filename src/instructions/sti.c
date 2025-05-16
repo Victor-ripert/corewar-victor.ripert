@@ -95,12 +95,16 @@ bool sti_inst(uint8_t *params, champion_t *champion,
 
     if (read_coding_byte(params[0], &type_array) == false)
         return false;
+    if (check_params(type_array) == false) {
+        champion->carry = false;
+        return true;
+    }
     return true;
     arg1 = (*champion->reg)[params[pos]];
     pos += C_REG;
     arg2 = get_arg2(params, champion, map, &pos);
     arg3 = get_arg3(params, champion, map, &pos);
     if (write_int_byte(map, arg1, (arg2 + arg3)) == false)
-        champion->carry == false;
+        champion->carry = false;
     return true;
 }

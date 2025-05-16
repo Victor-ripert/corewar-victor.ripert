@@ -23,6 +23,7 @@ SRC = 	main.c					\
 		src/instructions/utils/extract_bits.c	\
 		src/instructions/utils/read_coding_byte.c	\
 		src/instructions/utils/write_int_byte.c	\
+		src/instructions/utils/add_champions.c	\
 		src/instructions/add.c	\
 		src/instructions/ld.c	\
 		src/instructions/st.c	\
@@ -30,6 +31,7 @@ SRC = 	main.c					\
 		src/instructions/live.c	\
 		src/instructions/sti.c	\
 		src/instructions/sub.c	\
+		src/instructions/fork.c	\
 		src/mechanic/execute_instr.c	\
 		src/mechanic/find_instr_size.c	\
 		src/mechanic/init_champion_map.c	\
