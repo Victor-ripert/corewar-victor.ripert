@@ -86,7 +86,7 @@ bool assign_adress(warrior_t **warriors, size_t warriors_nb)
         return false;
     spaces = MEM_SIZE / warriors_nb;
     for (int i = 0; warriors[i] != NULL; ++i) {
-        if (warriors[i]->addres == UNINITIALIZED) {
+        if (warriors[i]->addres == UNINITIALIZED_ADRESS) {
             current += spaces % MAP_MOD;
             warriors[i]->addres = current;
         }

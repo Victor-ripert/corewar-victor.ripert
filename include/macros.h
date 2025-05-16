@@ -16,6 +16,7 @@
     #define ERROR_FD 2
     #define EXA_BASE "0123456789ABCDEF"
     #define EXA 16
-    #define UNINITIALIZED -1
     #define MAP_MOD (6 * 1024)
+    static const ssize_t UNINITIALIZED_PROG_NB = -1;
+    static const ssize_t UNINITIALIZED_ADRESS = -1;
 #endif /* MACROS */

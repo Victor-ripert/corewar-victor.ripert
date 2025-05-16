@@ -19,7 +19,7 @@ typedef struct warrior_s warrior_t;
 typedef struct sim_s {
     ssize_t dump;
     size_t warriors_nb;
-    size_t prog_nb;
+    ssize_t prog_nb;
     ssize_t load_address;
     warrior_t **warriors;
 }sim_t;
