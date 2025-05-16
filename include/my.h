@@ -24,5 +24,6 @@ void put_in_arena(u_int8_t *arena, warrior_t **warriors);
 bool assign_adress(warrior_t **warriors, size_t warriors_nb);
 void print_map(u_int8_t *map);
 void display_error(char *error);
+int my_put_nbr(int nb);
 
 #endif /* MY_H */

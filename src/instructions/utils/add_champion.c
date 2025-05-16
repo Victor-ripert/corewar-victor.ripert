@@ -35,6 +35,7 @@ static int *init_reg(int r1)
     for (size_t i = 1; i < REG_NUMBER; i++) {
         reg[i] = 0;
     }
+    return reg;
 }
 
 static champion_t *init_new_champ(size_t pos, int id)
@@ -49,7 +50,7 @@ static champion_t *init_new_champ(size_t pos, int id)
     new->carry = false;
     new->instr = 0;
     new->name = NULL;
-    new->pc = pos;
+    (*new->pc) = pos;
     new->pos = pos;
     new->ptr = NULL;
     new->reg = &reg;

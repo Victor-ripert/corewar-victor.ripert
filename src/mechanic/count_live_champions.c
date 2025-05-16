@@ -25,7 +25,6 @@ bool count_live_champions(champion_t **champ_array, size_t *nb_champ)
         if (champ_array[i]->dead == false)
             count++;
     }
-    printf("nb_champ = %ld - count = %ld\n", (*nb_champ), count);
     (*nb_champ) = count;
     return true;
 }

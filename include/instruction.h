@@ -68,5 +68,13 @@ bool st_instr
 (uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
 bool add_instr
 (uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
+bool fork_instr(uint8_t *params, champion_t *champion,
+    uint8_t *, champion_t **champ_array);
+bool live_instr(uint8_t *params, champion_t *champion,
+    uint8_t *, champion_t **champ_array);
+bool sti_inst(uint8_t *params, champion_t *champion,
+    uint8_t *map, champion_t **);
+bool sub_instr(uint8_t *params, champion_t *champion,
+    uint8_t *, champion_t **);
 
 #endif /* INSTRUCTION_H */

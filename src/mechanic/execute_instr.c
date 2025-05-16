@@ -13,11 +13,17 @@
 #include "instruction.h"
 #include "macros.h"
 
-static bool find_instr(uint8_t *map, champion_t *champion)
+static bool find_instr_annex(uint8_t *map, champion_t *champion)
 {
     const op_to_instr_t instr_tab[NB_INSTR] = {
+        {1, &live_instr, 5},
         {2, &ld_instr, 5},
         {3, &st_instr, 5},
+        {4, &add_instr, 10},
+        {5, &sub_instr, 10},
+        {9, &zjmp_inst, 20},
+        {11, &sti_inst, 25},
+        {12, &fork_instr, 800},
         {0, NULL, 0}
     };
 
@@ -28,6 +34,12 @@ static bool find_instr(uint8_t *map, champion_t *champion)
         }
         return true;
     }
+    return true;
+}
+
+static bool find_instr(uint8_t *map, champion_t *champion)
+{
+    find_instr_annex(map, champion);
     champion->pos++;
     return true;
 }

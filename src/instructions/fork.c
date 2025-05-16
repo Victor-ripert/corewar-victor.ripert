@@ -22,4 +22,5 @@ bool fork_instr(uint8_t *params, champion_t *champion,
     if (add_champion(&champ_array, (((*champion->pc) + arg) % IDX_MOD),
     (*champion->reg)[0]) == false)
         return false;
+    return true;
 }

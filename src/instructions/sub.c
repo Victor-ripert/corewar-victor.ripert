@@ -22,7 +22,8 @@ static bool check_params(args_type_t *type_array)
     return true;
 }
 
-bool sub_instr(uint8_t *params, champion_t *champion, uint8_t *, champion_t **)
+bool sub_instr(uint8_t *params, champion_t *champion,
+    uint8_t *, champion_t **)
 {
     args_type_t *type_array = NULL;
     int reg1_num = 0;

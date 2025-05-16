@@ -11,7 +11,6 @@ SRC = 	main.c					\
 		src/free_warriors.c		\
 		src/get_champions.c		\
 		src/help.c				\
-		src/op.c				\
 		src/pars_args.c			\
 		src/swap_endian.c		\
 		src/sort_warriors.c		\
@@ -23,7 +22,8 @@ SRC = 	main.c					\
 		src/instructions/utils/extract_bits.c	\
 		src/instructions/utils/read_coding_byte.c	\
 		src/instructions/utils/write_int_byte.c	\
-		src/instructions/utils/add_champions.c	\
+		src/instructions/utils/add_champion.c	\
+		src/instructions/utils/my_put_nbr.c	\
 		src/instructions/add.c	\
 		src/instructions/ld.c	\
 		src/instructions/st.c	\
