@@ -27,12 +27,16 @@ SRC = 	main.c					\
 		src/instructions/ld.c	\
 		src/instructions/st.c	\
 		src/instructions/zjump.c	\
+		src/instructions/live.c	\
+		src/instructions/sti.c	\
+		src/instructions/sub.c	\
 		src/mechanic/execute_instr.c	\
 		src/mechanic/find_instr_size.c	\
 		src/mechanic/init_champion_map.c	\
 		src/mechanic/main_loop.c	\
 		src/mechanic/warrior_to_champion.c	\
 		src/mechanic/check_living_champions.c	\
+		src/mechanic/count_live_champions.c	\
 
 
 OBJ	=	$(SRC:.c=.o)

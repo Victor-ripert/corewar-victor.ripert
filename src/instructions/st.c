@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
+
 #include "op.h"
 #include "macros.h"
 #include "instruction.h"

@@ -56,6 +56,7 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
 bool warrior_to_champion(warrior_t **warriors, champion_t ***champ_array);
 bool init_champion_map(sim_t *corewar, uint8_t *map);
 bool check_living_champions(champion_t **champ_array);
+bool count_live_champions(champion_t **champ_array, size_t *nb_champ);
 
 /* Instructions */
 bool zjmp_inst
