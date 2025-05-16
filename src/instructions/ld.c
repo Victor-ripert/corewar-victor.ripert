@@ -48,7 +48,8 @@ static bool check_params(args_type_t *type_array)
     return true;
 }
 
-bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
+bool ld_instr
+(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
 {
     args_type_t *type_array = NULL;
     int arg1 = 0;

@@ -26,7 +26,8 @@ typedef struct champion_s {
     size_t pos;
     uint8_t instr;
     char *name;
-    bool (*ptr)(uint8_t *, struct champion_s *, uint8_t *, struct champion_s **);
+    bool (*ptr)
+    (uint8_t *, struct champion_s *, uint8_t *, struct champion_s **);
     int **reg;
     ssize_t *pc;
     bool carry;
@@ -47,7 +48,8 @@ int byte_to_int(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4);
 int byte_to_indir(uint8_t byte1, uint8_t byte2);
 bool write_int_byte(uint8_t *map, int num, size_t adress);
 ssize_t find_instr_size(uint8_t *map, uint8_t opcode, size_t pos);
-bool execute_instr(uint8_t *map, champion_t *champion, champion_t **cham_array);
+bool execute_instr
+(uint8_t *map, champion_t *champion, champion_t **cham_array);
 
 bool main_loop(champion_t **champ_array, uint8_t *map,
     size_t nb_robot, ssize_t dump);
@@ -56,9 +58,13 @@ bool init_champion_map(sim_t *corewar, uint8_t *map);
 bool check_living_champions(champion_t **champ_array);
 
 /* Instructions */
-bool zjmp_inst(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
-bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
-bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
-bool add_instr(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
+bool zjmp_inst
+(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
+bool ld_instr
+(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
+bool st_instr
+(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
+bool add_instr
+(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
 
 #endif /* INSTRUCTION_H */

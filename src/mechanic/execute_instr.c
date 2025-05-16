@@ -67,7 +67,8 @@ bool case_instr(uint8_t *map, champion_t *champion, champion_t **champ_array)
     return true;
 }
 
-bool execute_instr(uint8_t *map, champion_t *champion, champion_t **champ_array)
+bool execute_instr
+(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
     if (champion->remanent_cycle > 0)
         return true;

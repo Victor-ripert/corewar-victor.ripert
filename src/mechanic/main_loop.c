@@ -13,7 +13,8 @@
 #include "my.h"
 #include "macros.h"
 
-bool play_champion(uint8_t *map, champion_t *champion, champion_t **champ_array)
+bool play_champion
+(uint8_t *map, champion_t *champion, champion_t **champ_array)
 {
     if (champion->dead == true)
         return true;
@@ -38,10 +39,9 @@ bool main_loop(champion_t **champ_array, uint8_t *map,
 
     while (nb_robot >= 2) {
         if ((cycle % CYCLE_TO_DIE) == 0) {
-            if (check_living_champions(champ_array) == false)
-                return false;
+            check_living_champions(champ_array);
         }
-        if (select_champions(map, champ_array) == false)
+        if (!select_champions(map, champ_array))
             return false;
         cycle++;
         if (dump != FAIL_VALUE || cycle == (size_t) dump) {
