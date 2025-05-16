@@ -9,7 +9,8 @@
 
 #include "instruction.h"
 
-bool sti_inst(uint8_t *params, champion_t *champion, uint8_t *map)
+bool sti_inst
+(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
 {
     return true;
 }

@@ -35,7 +35,8 @@ static bool st_handle_reg(uint8_t *params, champion_t *champion)
     return true;
 }
 
-static bool st_hanlde_indir(uint8_t *params, uint8_t *map, champion_t *champion)
+static bool st_hanlde_indir
+(uint8_t *params, uint8_t *map, champion_t *champion)
 {
     const uint8_t reg_num = params[1];
     const int indir = byte_to_indir(params[2], params[3]);
@@ -46,7 +47,8 @@ static bool st_hanlde_indir(uint8_t *params, uint8_t *map, champion_t *champion)
     return write_int_byte(map, (*champion->reg)[reg_num], adress);
 }
 
-bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
+bool st_instr
+(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **)
 {
     args_type_t *type_array = NULL;
 

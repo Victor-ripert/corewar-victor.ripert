@@ -30,9 +30,9 @@ static unsigned char *return_failure(int fd, unsigned char *buffer)
 
 static bool is_a_cor(char *arg)
 {
-    int len = my_strlen(arg) - 4;
+    int len = my_strlen(arg) - DOT_CORE_NB;
 
-    if (my_strncmp(DOT_CORE, arg + len, 4) == SUCCESS_VALUE) {
+    if (my_strncmp(DOT_CORE, arg + len, DOT_CORE_NB) == SUCCESS_VALUE) {
         return true;
     }
     return false;
@@ -66,7 +66,7 @@ static unsigned char *get_prog(int prog_size, char *pathname)
     buffer = malloc(sizeof(unsigned char) * (prog_size + 1));
     if (buffer == NULL)
         return NULL;
-    if (lseek(fd, 2192, SEEK_SET) == FAIL_VALUE)
+    if (lseek(fd, OFFSET_POSITION, SEEK_SET) == FAIL_VALUE)
         return return_failure(fd, buffer);
     for (int i = 0; i < prog_size; ++i) {
         rv = read(fd, &buffer[i], sizeof(unsigned char));

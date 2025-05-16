@@ -10,6 +10,8 @@
     #define FAIL_VALUE -1
     #define ERROR_VALUE 84
     #define SUCCESS_VALUE 0
+    #define DOT_CORE_NB 4
+    #define OFFSET_POSITION 2192
     #define DOT_CORE ".cor"
     #define ERROR_FD 2
     #define EXA_BASE "0123456789ABCDEF"

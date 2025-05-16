@@ -9,7 +9,7 @@
 
 #include "instruction.h"
 
-bool zjmp_inst(uint8_t *params, champion_t *champion, uint8_t *)
+bool zjmp_inst(uint8_t *params, champion_t *champion, uint8_t *, champion_t **)
 {
     signed short arg = 0;
     if (champion->carry) {

@@ -56,6 +56,7 @@ bool init_champion_map(sim_t *corewar, uint8_t *map);
 bool check_living_champions(champion_t **champ_array);
 
 /* Instructions */
+bool zjmp_inst(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);
 bool ld_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
 bool st_instr(uint8_t *params, champion_t *champion, uint8_t *map, champion_t **);
 bool add_instr(uint8_t *params, champion_t *champion, uint8_t *, champion_t **);

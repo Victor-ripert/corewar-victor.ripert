@@ -13,7 +13,8 @@
 #include "instruction.h"
 #include "op.h"
 
-bool live_instr(uint8_t *params, champion_t *, uint8_t *, champion_t **champ_array)
+bool live_instr
+(uint8_t *params, champion_t *, uint8_t *, champion_t **champ_array)
 {
     int arg1 = 0;
 
