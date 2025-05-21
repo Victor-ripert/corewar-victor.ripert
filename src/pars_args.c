@@ -28,6 +28,10 @@ bool get_prog_nbr(char *arg, sim_t *corewar, size_t *i)
 {
     int prog_nb = 0;
 
+    if (arg == NULL) {
+        help_flag();
+        return false;
+    }
     if (!is_a_valid_nb(arg)) {
         return false;
     }
@@ -44,6 +48,10 @@ bool get_load_address(char *arg, sim_t *corewar, size_t *i)
 {
     int load_address = 0;
 
+    if (arg == NULL) {
+        help_flag();
+        return false;
+    }
     if (!my_getnbr(arg)) {
         return false;
     }
@@ -60,6 +68,10 @@ bool init_dump(char *arg, sim_t *corewar, size_t *i)
 {
     int nb_cycle = 0;
 
+    if (arg == NULL) {
+        help_flag();
+        return false;
+    }
     if (!my_getnbr(arg)) {
         return false;
     }
